@@ -1,29 +1,34 @@
-import React from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
-import LoginButton from '../components/ui/auth/LoginButton'
-import LogoutButton from '../components/ui/auth/LogoutButton'
+import React from 'react';
+import { useAuth } from '../hooks/useAuth';
+import LoginButton from '../components/ui/auth/LoginButton';
+import Link from 'next/link';
 
-const LoginPage: React.FC = () => {
-  const { isAuthenticated, user } = useAuth0()
+const SignInPage: React.FC = () => {
+  const { loginWithRedirect } = useAuth();
+
+  const handleLogin = () => {
+    loginWithRedirect().then(() => {
+      // After successful login, navigate to the landing page
+      window.location.href = '/logged-in/landing';
+    });
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-blue-500">
-      <div className="bg- p-8 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold mb-4">Welcome to My Recipe Blog</h1>
-        <p className="mb-8">
-          This is the homepage of the recipe blog application.
-        </p>
-        {isAuthenticated ? (
-          <div>
-            <p className="mb-2">Hello, {user?.name}!</p>
-            <LogoutButton />
-          </div>
-        ) : (
-          <LoginButton />
-        )}
-      </div>
+    <div className="flex flex-col items-center justify-center h-screen bg-blue-200 font-mono">
+  
+    
+        <div className="flex flex-col items-center justify-center h-screen bg-blue-200">
+    
+      <h1 className="text-2xl font-bold mb-4">Welcome</h1>
+      <p className="mb-8">Please sign in</p>
+      <LoginButton onClick={handleLogin} />
     </div>
-  )
-}
+  </div>
+     
+    
+  
+  
+  );
+};
 
-export default LoginPage
+export default SignInPage;
