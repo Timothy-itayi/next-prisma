@@ -1,8 +1,9 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
+
 interface LoginButtonProps {
-  onClick: () => void; // Define the type for onClick prop
+  onClick: () => void; 
 }
 
 const LoginButton: React.FC<LoginButtonProps> = ({ onClick }) => {
@@ -10,14 +11,15 @@ const LoginButton: React.FC<LoginButtonProps> = ({ onClick }) => {
 
   const handleLogin = async () => {
     try {
+      console.log('Attempting login...');
       await loginWithRedirect();
-      onClick(); // Call the onClick function provided by parent
+  
+  
     } catch (error) {
       console.error('An error occurred during login:', error);
-      // Handle the error here if needed
     }
   };
-
+  
   return (
     <button
       onClick={handleLogin}
