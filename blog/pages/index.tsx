@@ -1,16 +1,16 @@
-import React from 'react';
+import { NextPage } from 'next';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from '../components/ui/auth/LoginButton';
+import { useRouter } from 'next/router';
 
-
-const SignInPage: React.FC = () => {
+const SignInPage: NextPage = () => {
   const { loginWithRedirect } = useAuth0();
- 
+  const router = useRouter();
 
   const handleLogin = async () => {
     try {
       await loginWithRedirect();
-     
+      router.push('/logged-In/landingPage');
     } catch (error) {
       console.error('An error occurred during login:', error);
     }
