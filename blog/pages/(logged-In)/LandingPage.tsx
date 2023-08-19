@@ -1,9 +1,9 @@
-import React from 'react';
+import { NextPage } from 'next';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from '../../components/ui/auth/LoginButton';
 import LogoutButton from '../../components/ui/auth/LogoutButton';
 
-const LandingPage: React.FC = () => {
+const LandingPage: NextPage = () => {
   const { isAuthenticated, user, loginWithRedirect } = useAuth0();
 
   return (
