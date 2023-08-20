@@ -1,16 +1,15 @@
-// pages/api/auth/login.ts
 import { handleAuth } from '@auth0/nextjs-auth0';
-import { useAuth } from '../../../hooks/useAuth'; // Replace with actual path to your custom hook
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default handleAuth({
   async login(req: NextApiRequest, res: NextApiResponse) {
     try {
-      const { loginWithRedirect } = useAuth();
-      await loginWithRedirect();
+      console.log('API login endpoint called');
+      // You can handle login logic here
+      // This endpoint will initiate the Auth0 login process
     } catch (error) {
-        const errorMessage = (error as Error).message||
-      console.error('An error occurred during login:', error);
+      const errorMessage = (error as Error).message || 'An unknown error occurred';
+      console.error('An error occurred during login:', errorMessage);
       res.status(500).end(errorMessage);
     }
   },
