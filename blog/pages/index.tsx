@@ -9,12 +9,14 @@ const SignInPage: NextPage = () => {
 
   const handleLogin = async () => {
     try {
+      console.log('handleLogin function called'); // Add this line
       await loginWithRedirect();
       router.push('/logged-In/landingPage');
     } catch (error) {
       console.error('An error occurred during login:', error);
     }
   };
+  
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-blue-200 font-mono">
